@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Way2Go - Destination Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <img src="C:\Users\nanda\OneDrive\Desktop\Way2go\logo.png" alt="Way2Go Logo">
+        <h1>WAY2GO</h1>
+    </header>
+
+    <main>
+        <h2>Destination Details</h2>
+
+        <div id="destinationDetails">
+            <!-- Destination details will be displayed here -->
+        </div>
+    </main>
+
+    <script>
+        // Function to extract the destination from the query parameter
+        function getDestinationFromUrl() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get('destination');
+        }
+
+        // Function to fetch and display destination details
+        function displayDestinationDetails() {
+            const destination = getDestinationFromUrl();
+
+            // Assuming destinationsData is an array with detailed information for each destination
+            const destinationsData = [
+                { id: 1, name: 'Kerala Backwaters', climate: 'Tropical', cost: 250, weather: 'Warm and Humid', bestTime: 'September to January', activities: 'Leisure Travel' },
+                { id: 2, name: 'Ooty', climate: 'Mild', cost: 120, weather: 'Cool', bestTime: 'February to April', activities: 'Nature Exploration' },
+                { id: 3, name: 'Goa', climate: 'Tropical', cost: 180, weather: 'Warm and Humid', bestTime: 'May to August', activities: 'Beach' },
+                { id: 4, name: 'Hampi', climate: 'Hot', cost: 80, weather: 'Hot and Dry', bestTime: 'September to December', activities: 'Cultural Heritage' },
+                { id: 5, name: 'Kodaikanal', climate: 'Cool', cost: 160, weather: 'Cool and Misty', bestTime: 'January to March', activities: 'Mountain' },
+                { id: 6, name: 'Mahabalipuram', climate: 'Hot', cost: 130, weather: 'Hot and Humid', bestTime: 'April to June', activities: 'Cultural Heritage' },
+                { id: 7, name: 'Coorg', climate: 'Mountainous', cost: 100, weather: 'Cool and Misty', bestTime: 'July to September', activities: 'Nature Exploration' },
+                { id: 8, name: 'Pondicherry', climate: 'Hot', cost: 130, weather: 'Breezy', bestTime: 'October to December', activities: 'Coastal' },
+                { id: 9, name: 'Munnar', climate: 'Mountainous', cost: 110, weather: 'Cool', bestTime: 'January to March', activities: 'Mountain' },
+                { id: 10, name: 'Chennai', climate: 'Hot', cost: 90, weather: 'Sunny', bestTime: 'April to June', activities: 'Urban Exploration' },
+                { id: 11, name: 'Madurai', climate: 'Hot', cost: 90, weather: 'Pleasant', bestTime: 'July to September', activities: 'Cultural Heritage' },
+                { id: 12, name: 'Kanyakumari', climate: 'Breezy', cost: 140, weather: 'Windy', bestTime: 'October to December', activities: 'Coastal' },
+                { id: 13, name: 'Rameswaram', climate: 'Hot', cost: 100, weather: 'Hot and Dry', bestTime: 'January to March', activities: 'Spiritual Awakening' },
+                { id: 14, name: 'Wayanad', climate: 'Cool', cost: 210, weather: 'Cool and Misty', bestTime: 'April to June', activities: 'Nature Exploration' },
+                { id: 15, name: 'Tirupati', climate: 'Mountainous', cost: 220, weather: 'Hot and Dry', bestTime: 'July to September', activities: 'Cultural Heritage' },
+                { id: 16, name: 'Varkala', climate: 'Seaside', cost: 120, weather: 'Breezy', bestTime: 'October to December', activities: 'Beach' },
+                { id: 17, name: 'Gokarna', climate: 'Breezy', cost: 230, weather: 'Breezy', bestTime: 'January to March', activities: 'Beach' },
+                { id: 18, name: 'Kovalam', climate: 'Seaside', cost: 220, weather: 'Hot and Humid', bestTime: 'April to June', activities: 'Beach' },
+                { id: 19, name: 'Nandi Hills', climate: 'Mountainous', cost: 240, weather: 'Cool and Misty', bestTime: 'July to September', activities: 'Hill Station' },
+                { id: 20, name: 'Alleppey', climate: 'Riverside', cost: 160, weather: 'Sunny', bestTime: 'October to December', activities: 'Riverside Escape' },
+                { id: 21, name: 'Hogenakkal', climate: 'Riverside', cost: 240, weather: 'Hot and Dry', bestTime: 'January to March', activities: 'Riverside Escape' },
+                { id: 22, name: 'Kumarakom', climate: 'Riverside', cost: 140, weather: 'Hot and Humid', bestTime: 'September to January', activities: 'Riverside Escape' },
+                { id: 23, name: 'Dhanushkodi', climate: 'Breezy', cost: 240, weather: 'Hot and Dry', bestTime: 'July to September', activities: 'Leisure Travel' },
+                { id: 24, name: 'Kollam', climate: 'Mild', cost: 170, weather: 'Hot and Humid', bestTime: 'October to December', activities: 'Urban Exploration' },
+                { id: 25, name: 'Mysuru', climate: 'Hot', cost: 220, weather: 'Pleasant', bestTime: 'January to March', activities: 'Cultural Heritage' },
+                { id: 26, name: 'Shimla', climate: 'Cold', cost: 150, weather: 'Snowy', bestTime: 'April to June', activities: 'Winter Wonderland' },
+                { id: 27, name: 'Rishikesh', climate: 'Cold', cost: 200, weather: 'Snowy', bestTime: 'July to September', activities: 'Spiritual Awakening' },
+                { id: 28, name: 'Jaipur', climate: 'Hot', cost: 120, weather: 'Sunny', bestTime: 'October to December', activities: 'Leisure Travel' },
+                { id: 29, name: 'Darjeeling', climate: 'Cool', cost: 160, weather: 'Cool and Misty', bestTime: 'January to March', activities: 'Hill Station' },
+                { id: 30, name: 'Varanasi', climate: 'Cool', cost: 150, weather: 'Sunny', bestTime: 'April to July', activities: 'Spiritual Awakening' }
+            ];
+
+            const destinationDetails = destinationsData.find(item => item.name === destination.name);
+
+            if (destinationDetails) {
+                // Display destination details
+                const destinationDetailsContainer = document.getElementById('destinationDetails');
+                destinationDetailsContainer.innerHTML = `
+                    <h3>${destinationDetails.name}</h3>
+                    <p>Climate: ${destinationDetails.climate}</p>
+                    <p>Cost: $${destinationDetails.cost.toFixed(2)}</p>
+                    <p>Weather: ${destinationDetails.weather}</p>
+                    <p>Best Time to Visit: ${destinationDetails.bestTime}</p>
+                    <p>Activities: ${destinationDetails.activities}</p>
+                `;
+            } else {
+                // Destination not found
+                alert('Destination details not available.');
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = displayDestinationDetails;
+    </script>
+
+    <footer>
+        <p>&copy; 2024 WAY2GO</p>
+    </footer>
+
+</body>
+</html>

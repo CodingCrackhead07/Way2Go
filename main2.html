@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Way2Go - Main 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add styles for consistent sizing */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .small-text {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        button {
+            background-color: #4b4860;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Way2Go Logo">
+        <h1>Way2Go - Explore Destinations</h1>
+    </header>
+
+    <main>
+        <h2>Destination Preferences</h2>
+
+        <form id="preferencesForm">
+            <label for="climate">Climate:</label>
+            <p class="small-text">Select from the below options</p>
+            <select id="climate" name="climate" required>
+                <option value="null">-</option>
+                <option value="tropical">Tropical</option>
+                <option value="breezy">Breezy</option>
+                <option value="mild">Mild</option>
+                <option value="mountainous">Mountainous</option>
+                <option value="hot">Hot</option>
+                <option value="cool">Cool</option>
+                <option value="seaside">Seaside</option>
+                <option value="riverside">Riverside</option>
+                <option value="cold">Cold</option>
+                <option value="hot">Hot</option>
+            </select>
+        
+            <label for="cost">Cost of Stay:</label>
+            <p class="small-text">Select the cost range</p>
+            <input type="range" id="cost" name="cost" min="90" max="250" step="10" value="100" oninput="updateCostValue(this.value)">
+            <span id="costValue">ANY</span>
+        
+            <label for="weather">Weather:</label>
+            <p class="small-text">Warm Cold Sunny</p>
+            <select id="weather" name="weather" required>
+                <option value="null">-</option>
+                <option value="warm and humid">Warm and Humid</option>
+                <option value="cool">Cool</option>
+                <option value="hot and dry">Hot and Dry</option>
+                <option value="cool and misty">Cool and Misty</option>
+                <option value="hot and humid">Hot and Humid</option>
+                <option value="breezy">Breezy</option>
+                <option value="pleasant">Pleasant</option>
+                <option value="snowy">Snowy</option>
+                <option value="sunny">Sunny</option>
+            </select>
+        
+            <label for="bestTime">When are you planning the trip:</label>
+            <p class="small-text">For example like October to March</p>
+            <input type="text" id="bestTime" name="bestTime" required>
+        
+            <label for="activities">Activities:</label>
+            <p class="small-text">Select from available activities</p>
+            <select id="activities" name="activities" required>
+                <option value="null">-</option>
+                <option value="Leisure Travel">Leisure Travel</option>
+                <option value="Nature Exploration">Nature Exploration</option>
+                <option value="Beach">Beach</option>
+                <option value="Mountain">Mountain</option>
+                <option value="Cultural Heritage">Cultural Heritage</option>       
+                <option value="Urban Exploration">Urban Exploration</option>
+                <option value="Coastal">Coastal</option>
+                <option value="Hill Station">Hill Station</option>
+                <option value="Riverside Escape">Riverside Escape</option>
+                <option value="Winter Wonderland">Winter Wonderland</option>
+                <option value="Spiritual Setting">Spiritual Awakening</option>
+            </select>
+        
+            <button type="button" onclick="submitPreferences()">Submit</button>
+        </form>
+    </main>
+
+    <script>
+        function updateCostValue(value) {
+            var cost = document.getElementById("costValue");
+            if (value == "90") {
+                cost.innerText = "any";
+            }
+            else {
+                cost.innerText = value;
+            }
+        }
+        function submitPreferences() {
+            console.log("Function called");
+            // Retrieve values from the form elements
+            const climate = document.getElementById('climate').value;
+            const cost = parseFloat(document.getElementById('cost').value);
+            const weather = document.getElementById('weather').value;
+            const bestTime = document.getElementById('bestTime').value;
+            const activities = document.getElementById('activities').value;
+    
+            // Assume destinationsData is an array with destination objects
+            const destinationsData = [
+                { id: 1, name: 'Kerala Backwaters', climate: 'Tropical', cost: 250, weather: 'Warm and Humid', bestTime: 'September to January', activities: 'Leisure Travel' },
+                { id: 2, name: 'Ooty', climate: 'Mild', cost: 120, weather: 'Cool', bestTime: 'February to April', activities: 'Nature Exploration' },
+                { id: 3, name: 'Goa', climate: 'Tropical', cost: 180, weather: 'Warm and Humid', bestTime: 'May to August', activities: 'Beach' },
+                { id: 4, name: 'Hampi', climate: 'Hot', cost: 80, weather: 'Hot and Dry', bestTime: 'September to December', activities: 'Cultural Heritage' },
+                { id: 5, name: 'Kodaikanal', climate: 'Cool', cost: 160, weather: 'Cool and Misty', bestTime: 'January to March', activities: 'Mountain' },
+                { id: 6, name: 'Mahabalipuram', climate: 'Hot', cost: 130, weather: 'Hot and Humid', bestTime: 'April to June', activities: 'Cultural Heritage' },
+                { id: 7, name: 'Coorg', climate: 'Mountainous', cost: 100, weather: 'Cool and Misty', bestTime: 'July to September', activities: 'Nature Exploration' },
+                { id: 8, name: 'Pondicherry', climate: 'Hot', cost: 130, weather: 'Breezy', bestTime: 'October to December', activities: 'Coastal' },
+                { id: 9, name: 'Munnar', climate: 'Mountainous', cost: 110, weather: 'Cool', bestTime: 'January to March', activities: 'Mountain' },
+                { id: 10, name: 'Chennai', climate: 'Hot', cost: 90, weather: 'Sunny', bestTime: 'April to June', activities: 'Urban Exploration' },
+                { id: 11, name: 'Madurai', climate: 'Hot', cost: 90, weather: 'Pleasant', bestTime: 'July to September', activities: 'Cultural Heritage' },
+                { id: 12, name: 'Kanyakumari', climate: 'Breezy', cost: 140, weather: 'Windy', bestTime: 'October to December', activities: 'Coastal' },
+                { id: 13, name: 'Rameswaram', climate: 'Hot', cost: 100, weather: 'Hot and Dry', bestTime: 'January to March', activities: 'Spiritual Awakening' },
+                { id: 14, name: 'Wayanad', climate: 'Cool', cost: 210, weather: 'Cool and Misty', bestTime: 'April to June', activities: 'Nature Exploration' },
+                { id: 15, name: 'Tirupati', climate: 'Mountainous', cost: 220, weather: 'Hot and Dry', bestTime: 'July to September', activities: 'Cultural Heritage' },
+                { id: 16, name: 'Varkala', climate: 'Seaside', cost: 120, weather: 'Breezy', bestTime: 'October to December', activities: 'Beach' },
+                { id: 17, name: 'Gokarna', climate: 'Breezy', cost: 230, weather: 'Breezy', bestTime: 'January to March', activities: 'Beach' },
+                { id: 18, name: 'Kovalam', climate: 'Seaside', cost: 220, weather: 'Hot and Humid', bestTime: 'April to June', activities: 'Beach' },
+                { id: 19, name: 'Nandi Hills', climate: 'Mountainous', cost: 240, weather: 'Cool and Misty', bestTime: 'July to September', activities: 'Hill Station' },
+                { id: 20, name: 'Alleppey', climate: 'Riverside', cost: 160, weather: 'Sunny', bestTime: 'October to December', activities: 'Riverside Escape' },
+                { id: 21, name: 'Hogenakkal', climate: 'Riverside', cost: 240, weather: 'Hot and Dry', bestTime: 'January to March', activities: 'Riverside Escape' },
+                { id: 22, name: 'Kumarakom', climate: 'Riverside', cost: 140, weather: 'Hot and Humid', bestTime: 'September to January', activities: 'Riverside Escape' },
+                { id: 23, name: 'Dhanushkodi', climate: 'Breezy', cost: 240, weather: 'Hot and Dry', bestTime: 'July to September', activities: 'Leisure Travel' },
+                { id: 24, name: 'Kollam', climate: 'Mild', cost: 170, weather: 'Hot and Humid', bestTime: 'October to December', activities: 'Urban Exploration' },
+                { id: 25, name: 'Mysuru', climate: 'Hot', cost: 220, weather: 'Pleasant', bestTime: 'January to March', activities: 'Cultural Heritage' },
+                { id: 26, name: 'Shimla', climate: 'Cold', cost: 150, weather: 'Snowy', bestTime: 'April to June', activities: 'Winter Wonderland' },
+                { id: 27, name: 'Rishikesh', climate: 'Cold', cost: 200, weather: 'Snowy', bestTime: 'July to September', activities: 'Spiritual Awakening' },
+                { id: 28, name: 'Jaipur', climate: 'Hot', cost: 120, weather: 'Sunny', bestTime: 'October to December', activities: 'Leisure Travel' },
+                { id: 29, name: 'Darjeeling', climate: 'Cool', cost: 160, weather: 'Cool and Misty', bestTime: 'January to March', activities: 'Hill Station' },
+                { id: 30, name: 'Varanasi', climate: 'Cool', cost: 150, weather: 'Sunny', bestTime: 'April to July', activities: 'Spiritual Awakening' }
+
+            ];
+            
+            // Filter destinations based on user preferences
+            const matchedDestinations = destinationsData.filter(destination => {
+                return (
+                    (climate === "null" || destination.climate.toLowerCase() === climate) &&
+                    (parseFloat(cost) === 90 || destination.cost <= parseFloat(cost)) &&
+                    (weather === "null" || destination.weather.toLowerCase() === weather) &&
+                    (bestTime === "" || destination.bestTime.toLowerCase() === bestTime.toLowerCase()) &&
+                    (activities === "null" || destination.activities === activities)
+                );
+            });
+
+            if (matchedDestinations.length > 0) {
+                console.log("Matched destinations found");
+                // If there are matched destinations, create a list of place names
+                // Pass the matched data to main4.html
+                const matchedData = encodeURIComponent(JSON.stringify(matchedDestinations));
+                console.log(matchedData);
+                window.location.href = 'main4.html?data=' + matchedData;
+            } else {
+                console.log('No matching destinations found. Please try again.');
+                // If no matches, you can display an error message or take other actions
+                alert('No matching destinations found. Please try again.');
+            }
+        }        
+    </script>    
+</body>
+</html>

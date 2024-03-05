@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Way2Go - Location Input</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <img src="C:\Users\nanda\OneDrive\Desktop\Way2go\logo.png" alt="Way2Go Logo">
+        <h1>WAY2GO</h1>
+    </header>
+
+    <main>
+        <form id="locationForm">
+            <label for="startLocation">Start Location:</label>
+            <input type="text" id="startLocation" name="startLocation" required>
+
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" required>
+
+            <button type="button" onclick="submitLocation()">Submit</button>
+        </form>
+    </main>
+
+    <script>
+        function submitLocation() {
+            const startLocation = document.getElementById('startLocation').value;
+            const destination = document.getElementById('destination').value;
+
+            // Assume destinations is an array with destination names
+            const destinations = ['Kerala Backwaters', 'Ooty', 'Goa', 'Hampi', 'Kodaikanal', 'Mahabalipuram', 'Coorg',
+                                    'Pondicherry', 'Munnar', 'Chennai', 'Madurai', 'Kanyakumari', 'Rameswaram', 'Wayanad',
+                                    'Tirupati', 'Varkala', 'Gokarna', 'Kovalam', 'Nandi Hills', 'Alleppey', 'Hogenakkal',
+                                    'Kumarakom', 'Dhanushkodi', 'Kollam', 'Mysuru', 'Shimla', 'Rishikesh', 'Jaipur',
+                                    'Darjeeling', 'Varanasi'];
+
+            // Check if the entered destination exists in the array
+            if (destinations.includes(destination)) {
+                // If the destination exists, redirect to main3.html
+                window.location.href = 'main3.html?destination=' + encodeURIComponent(destination);
+
+            } else {
+                // If the destination doesn't exist, you can display an error message or take other actions
+                alert('Destination not found. Please try again.');
+            }
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 WAY2GO</p>
+    </footer>
+
+</body>
+</html>

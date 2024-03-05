@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Your App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="C:\Users\nanda\OneDrive\Desktop\Way2go\logo.png" alt="Your App Logo">
+        <h1>WAY2GO</h1>
+    </header>
+
+    <main>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </main>
+
+    <script type="module" defer>
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    
+        const firebaseConfig = {   
+            apiKey: "AIzaSyA_llo0YSCN5gA8d1vSR4WJQlz9R6lzpxA",
+            authDomain: "way2goo-35883.firebaseapp.com",
+            projectId: "way2goo-35883",
+            storageBucket: "way2goo-35883.appspot.com",
+            messagingSenderId: "1020818026396",
+            appId: "1:1020818026396:web:9eeb35a16842994b656259",
+            measurementId: "G-2R4X5DECWP"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        const loginForm = document.getElementById('loginForm');
+    
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            try {
+                // Use Firebase Authentication to sign in
+                await signInWithEmailAndPassword(auth, email, password);
+                alert('Login successful! Redirecting to your main page.');
+                window.location.href = 'main.html'; // Redirect to main.html
+            } catch (error) {
+                alert('Invalid email or password. Please try again.');
+                console.error('Error signing in:', error);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

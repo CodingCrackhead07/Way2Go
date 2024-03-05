@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Your App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="C:\Users\nanda\OneDrive\Desktop\Way2go\logo.png">
+        <h1>WAY2GO</h1>
+    </header>
+
+    <main>
+        <form id="signupform">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </main>
+
+    <script type="module" defer>
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    
+        const firebaseConfig = {   
+            apiKey: "AIzaSyA_llo0YSCN5gA8d1vSR4WJQlz9R6lzpxA",
+            authDomain: "way2goo-35883.firebaseapp.com",
+            projectId: "way2goo-35883",
+            storageBucket: "way2goo-35883.appspot.com",
+            messagingSenderId: "1020818026396",
+            appId: "1:1020818026396:web:9eeb35a16842994b656259",
+            measurementId: "G-2R4X5DECWP"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        const signupform = document.getElementById('signupform');
+    
+        signupform.addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            const newEmail = document.getElementById('email').value;
+            const newPassword = document.getElementById('password').value;
+    
+            try {
+                // Use Firebase Authentication to create a new user
+                await createUserWithEmailAndPassword(auth, newEmail, newPassword);
+                alert('Sign up successful! Redirecting to your login page.');
+                window.location.href = 'login.html';
+            } catch (error) {
+                alert('Error creating account. Please try again.');
+                console.error('Error creating account:', error);
+            }
+        });
+    </script>
+    
+
+    <footer>
+        <p>&copy; 2024 WAY2GO</p>
+    </footer>
+
+</body>
+
+</html>

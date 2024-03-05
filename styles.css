@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* White background for the entire body */
+    color: #333; /* Dark text color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    background-color: #3498db; /* Blue header background color */
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+header img {
+    width: 80px;
+    height: auto;
+}
+
+header h1 {
+    color: #fff; /* White text color for header */
+    margin-top: 10px;
+}
+
+main {
+    margin-top: 20px;
+}
+
+section {
+    background-color: #ecf0f1; /* Light blue background color for sections */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #3498db; /* Blue button background color */
+    color: #fff; /* White text color for buttons */
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+footer {
+    margin-top: auto;
+    background-color: #3498db; /* Blue footer background color */
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    color: #fff; /* White text color for footer */
+}
+
+li {
+    width: 100%;
+    padding: 5px;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    margin: 5px 0px;
+}
+
+li > div {
+    min-width: 50px;
+    width: 100%;
+    color: white;
+}
